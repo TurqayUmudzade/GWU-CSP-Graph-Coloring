@@ -1,4 +1,5 @@
 import fs from "fs"
+import generateColorArray from "./colorGenerator.js";
 
 export default function getGraph(path = './tests/input1.txt') {
     const edgeList = []
@@ -15,7 +16,7 @@ export default function getGraph(path = './tests/input1.txt') {
         }
     }
 
-    let colors = Array.from({ length: colorCount }, (_, i) => "color" + (i + 1))
+    let colors = generateColorArray(colorCount)
 
     return { edgeList, colors }
 }

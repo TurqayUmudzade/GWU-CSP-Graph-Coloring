@@ -1,4 +1,4 @@
-import setColors from "./coloring.js";
+import setColors from "./colorGraph.js";
 import getGraph from "./readFromFile.js";
 import Vertex from "./Vertex.js";
 
