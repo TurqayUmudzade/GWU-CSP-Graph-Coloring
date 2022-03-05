@@ -2,9 +2,13 @@ import setColors from "./colorGraph.js";
 import getGraph from "./readFromFile.js";
 import Vertex from "./Vertex.js";
 
-const { edgeList, colors } = getGraph()
+// const { edgeList, colors } = getGraph("./files/input.txt")
+// const { edgeList, colors } = getGraph("./files/input1.txt")
+// const { edgeList, colors } = getGraph("./files/gc_1378296846561000.txt")
+const { edgeList, colors } = getGraph("./files/gc_78317094521100.txt")
+// const { edgeList, colors } = getGraph("./files/input1.txt")
 
-//Build our graph
+// Build our graph
 function buildGraph(edgeList) {
     let vertices = []
     let set = new Set()

@@ -12,7 +12,8 @@ export default function getGraph(path = './files/input1.txt') {
         if (line.includes('colors')) { colorCount = parseInt(line.split("=")[1]) }
         else {
             let list = line.split(",").map(e => parseInt(e))
-            edgeList.push(list)
+            if (list && list[0])
+                edgeList.push(list)
         }
     }
 
