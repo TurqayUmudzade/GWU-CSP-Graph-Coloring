@@ -1,7 +1,7 @@
 import fs from "fs"
 import generateColorArray from "./colorGenerator.js";
 
-export default function getGraph(path = './tests/input1.txt') {
+export default function getGraph(path = './files/input1.txt') {
     const edgeList = []
     let colorCount = 0;
 
