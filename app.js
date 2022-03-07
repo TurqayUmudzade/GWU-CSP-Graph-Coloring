@@ -5,6 +5,12 @@ const { edgeList, colors } = getGraph("./files/input.txt")
 // const { edgeList, colors } = getGraph("./files/input1.txt")
 // const { edgeList, colors } = getGraph("./files/gc_1378296846561000.txt")
 // const { edgeList, colors } = getGraph("./files/gc_78317094521100.txt")
+//No solution
+// const { edgeList, colors } = getGraph("./files/gc_78317097930400.txt")
+// const { edgeList, colors } = getGraph("./files/gc_78317097930401.txt")
+// const { edgeList, colors } = getGraph("./files/gc_78317100510400.txt")
+
+
 
 // Build our graph
 let vertices = []
@@ -33,12 +39,8 @@ for (const v of vertices) {
     }
     constraints.push(temp)
 }
-let d = new Array(variables.length).fill([...colors])
+let domains = new Array(variables.length).fill([...colors])
 
-
-// let variables = ["WA", "NT", "SA", "Q", "NSW", "V", "T"]
-// let constraints = [["NT", "SA"], ["WA", "SA", "Q"], ["WA", "NT", "Q"], ["SA", "NT", "NSW"], ["SA", "Q", "V"], ["NSW", "SA"], []]
-// let d = [["red", "green", "blue"], ["red", "green", "blue"], ["red", "green", "blue"], ["red", "green", "blue"], ["red", "green", "blue"], ["red", "green", "blue"], ["red", "green", "blue"]]
 
 let assignments = {}
 let arcs = []
@@ -57,17 +59,17 @@ function revise(Xi, Xj) {
 
     let index = variables.indexOf(Xi)
 
-    for (const x of d[index]) {
+    for (const x of domains[index]) {
         if (!constraints[index].some(x => x == Xj)) break
         if (!assignments[Xj]) continue
         if (assignments[Xj] == x) {
-            d[index] = d[index].filter(e => e != x)
+            domains[index] = domains[index].filter(e => e != x)
             revised = true
         }
     }
 
-    if (!revised && d[index].length > 0)
-        assignments[Xi] = d[index][0]
+    if (!revised && domains[index].length > 0)
+        assignments[Xi] = domains[index][0]
 
     return revised
 }
@@ -81,8 +83,9 @@ function AC3() {
         if (revise(arcVars[0], arcVars[1])) {
             let dIndex = variables.indexOf(arcVars[0])
 
-            if (d[dIndex].length == 0) {
+            if (domains[dIndex].length == 0) {
                 console.log("No solution");
+                return
             }
             let neighbors = constraints[dIndex]
             neighbors = neighbors.filter(e => e != arcVars[1])
