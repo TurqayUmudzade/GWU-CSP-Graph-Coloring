@@ -25,8 +25,8 @@ export default function setColors(vertex, numberOfVertices, colors) {
         if (colorCount == numberOfVertices) // base case
             return true
 
-
         // Step-1.4: next uncolored vertex
+
         for (const nbrvertex of vertex.adjacentVertices) {
             if (!nbrvertex.colored) {
                 if (setColors(nbrvertex, numberOfVertices, colors)) {
@@ -34,7 +34,6 @@ export default function setColors(vertex, numberOfVertices, colors) {
                 }
             }
         }
-
     }
 
     // Step-4: backtrack
