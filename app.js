@@ -46,46 +46,14 @@ function colorGraph(vertex_num, number_of_colours) {
     return false;
 }
 
-//this method  returns true of graph is colored properly and false otherwise
-function checkGraph() {
-    let result = true;
-    let no_Of_vertex = vertices.length;
-    for (let i = 0; i < no_Of_vertex; i++) {
-        let color_of_vertex = color_config_array[i];
-        let neighbours = vertices[i].adjacentVertices
-        for (const neighbour of neighbours) {
-            if (color_of_vertex == color_config_array[neighbour.name]) {
-                result = false;
-                return result;
-            }
-        }
-
-    }
-    return result;
-}
 
 
-function printConfiguration() {
-    for (let i = 0; i < color_config_array.length; i++) {
-        console.log("The " + (i + 1) + "(th) vertex will be colored in color number " + color_config_array[i]);
+if (setColors(vertices[0], vertices.length, colors)) {
+    for (const vertex of vertices) {
+        console.log(vertex.name + " " + vertex.color)
     }
 }
-let result = colorGraph(0, colors.length)//0 is because we have to start the coloring from zeroth vertex
-if (result == true) {
-    console.log("The combination is ");
-    printConfiguration();
-}
-else {
-    console.log("the graph cannot be colored in these many given colours");
-}
+else
+    console.log("No Solution")
 
-//Apply coloring
-// if (setColors(vertices[0], vertices.length, colors)) {
-//     for (const vertex of vertices) {
-//         console.log(vertex.name + " " + vertex.color)
-//     }
-// }
-// else
-//     console.log("No Solution")
-
-// export { buildGraph }
+export { buildGraph }
